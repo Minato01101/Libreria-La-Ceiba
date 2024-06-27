@@ -91,8 +91,10 @@
             // 
             materialLabel2.Anchor = AnchorStyles.None;
             materialLabel2.AutoSize = true;
+            materialLabel2.BackColor = Color.Transparent;
             materialLabel2.Depth = 0;
             materialLabel2.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel2.ForeColor = SystemColors.Control;
             materialLabel2.Location = new Point(72, 255);
             materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel2.Name = "materialLabel2";
