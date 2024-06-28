@@ -107,7 +107,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.LimeGreen;
+            panel1.BackColor = Color.FromArgb(76, 175, 80);
             panel1.BorderStyle = BorderStyle.FixedSingle;
             panel1.Controls.Add(label1);
             panel1.Dock = DockStyle.Top;
@@ -120,7 +120,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.ForeColor = Color.Snow;
+            label1.ForeColor = Color.White;
             label1.Location = new Point(104, 10);
             label1.Name = "label1";
             label1.Size = new Size(185, 65);
@@ -165,6 +165,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.Control;
             ClientSize = new Size(399, 517);
             Controls.Add(pbShow);
             Controls.Add(panel1);
@@ -173,6 +174,7 @@
             Controls.Add(btnSiguiente);
             Controls.Add(txtClave);
             Controls.Add(txtUsuario);
+            ForeColor = SystemColors.ControlText;
             FormStyle = FormStyles.ActionBar_None;
             HelpButton = true;
             Name = "frm_login";
