@@ -35,7 +35,9 @@
             panel1 = new Panel();
             label1 = new Label();
             btnSiguiente = new MaterialSkin.Controls.MaterialButton();
+            pbShow = new PictureBox();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pbShow).BeginInit();
             SuspendLayout();
             // 
             // txtUsuario
@@ -69,6 +71,7 @@
             txtClave.MouseState = MaterialSkin.MouseState.OUT;
             txtClave.Multiline = false;
             txtClave.Name = "txtClave";
+            txtClave.Password = true;
             txtClave.Size = new Size(253, 50);
             txtClave.TabIndex = 2;
             txtClave.Text = "";
@@ -115,13 +118,13 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 28F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Font = new Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = Color.Snow;
-            label1.Location = new Point(126, 18);
+            label1.Location = new Point(104, 10);
             label1.Name = "label1";
-            label1.Size = new Size(147, 51);
+            label1.Size = new Size(185, 65);
             label1.TabIndex = 0;
-            label1.Text = "Logg in";
+            label1.Text = "Loggin";
             // 
             // btnSiguiente
             // 
@@ -145,11 +148,24 @@
             btnSiguiente.UseVisualStyleBackColor = true;
             btnSiguiente.Click += btnSiguiente_Click;
             // 
+            // pbShow
+            // 
+            pbShow.BorderStyle = BorderStyle.Fixed3D;
+            pbShow.Image = Properties.Resources.invisible__1_;
+            pbShow.Location = new Point(336, 287);
+            pbShow.Name = "pbShow";
+            pbShow.Size = new Size(36, 36);
+            pbShow.SizeMode = PictureBoxSizeMode.AutoSize;
+            pbShow.TabIndex = 9;
+            pbShow.TabStop = false;
+            pbShow.Click += pbShow_Click;
+            // 
             // frm_login
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(399, 517);
+            Controls.Add(pbShow);
             Controls.Add(panel1);
             Controls.Add(materialLabel2);
             Controls.Add(materialLabel1);
@@ -164,6 +180,7 @@
             Text = "Libreria la Ceiba";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pbShow).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -176,5 +193,6 @@
         private Panel panel1;
         private Label label1;
         private MaterialSkin.Controls.MaterialButton btnSiguiente;
+        private PictureBox pbShow;
     }
 }

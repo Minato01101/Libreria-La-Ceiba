@@ -9,6 +9,7 @@ namespace LibreriaCeiba
 {
     public partial class frm_login : MaterialSkin.Controls.MaterialForm
     {
+        //Variables que serviran mas adelate
         public string Info = "Registro de ventas la ceiba";
 
         public frm_login()
@@ -30,8 +31,9 @@ namespace LibreriaCeiba
         {
             string nombre = txtUsuario.Text;
             string clave = txtClave.Text;
+            string claveEncriptada = EncoderSHA256(clave);
             //query
-            string query = $"SELECT * FROM tblusers WHERE NombreUsuario = '{nombre}' AND Clave = '{clave}'";
+            string query = $"SELECT COUNT(*) FROM tblusers WHERE NombreUsuario = @nombre AND Clave = @clave'";
 
             MySqlConnection connection = Conexion.getConexion();
             connection.Open();
@@ -40,22 +42,18 @@ namespace LibreriaCeiba
             {
                 MySqlCommand cmd = new MySqlCommand(query, connection);
 
-                cmd.ExecuteNonQuery();
-                var scalar= cmd.ExecuteScalar();
-                int Datos;
+                cmd.Parameters.AddWithValue("@nombre", nombre);
+                cmd.Parameters.AddWithValue("@clave", claveEncriptada);
 
-                if (scalar == null)
-                {
-                    MessageBox.Show("Error: Asegurese de haber ingresado usuario y contraseña correcta", Info, MessageBoxButtons.OK );
-                    return;
-                }
-
-                Datos = (int)scalar;
+                int Datos = Convert.ToInt32(cmd.ExecuteScalar());
 
                 if (Datos > 0)
                 {
                     MessageBox.Show("Inicio de seccion exitoso", Info, MessageBoxButtons.OK);
-                    connection.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Error: Asegúrese de haber ingresado usuario y contraseña correcta", "Info", MessageBoxButtons.OK);
                 }
             }
             catch (MySqlException ex)
@@ -63,6 +61,11 @@ namespace LibreriaCeiba
 
                 MessageBox.Show("Error:" + ex.Message);
             }
+            finally
+            {
+                connection.Close();
+            }
+
         }
 
         public static string EncoderSHA256(string input)
@@ -77,6 +80,11 @@ namespace LibreriaCeiba
                 result += item.ToString("x2");
             }
             return result;
+        }
+
+        private void pbShow_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
