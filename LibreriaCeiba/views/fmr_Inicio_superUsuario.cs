@@ -11,12 +11,11 @@ using System.Windows.Forms;
 
 namespace LibreriaCeiba.views
 {
-    public partial class frm_Inicio : MaterialSkin.Controls.MaterialForm
+    public partial class fmr_Inicio_superUsuario : MaterialSkin.Controls.MaterialForm
     {
-        public frm_Inicio()
-        {
-            InitializeComponent();
 
+        public fmr_Inicio_superUsuario()
+        {
             InitializeComponent();
 
             this.BackColor=Color.Black;
@@ -28,6 +27,11 @@ namespace LibreriaCeiba.views
                 Primary.Green800,
                 Accent.Green700,
                 TextShade.BLACK);
+        }
+
+        private void materialLabel5_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

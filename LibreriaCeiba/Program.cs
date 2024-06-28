@@ -1,3 +1,5 @@
+using LibreriaCeiba.views;
+
 namespace LibreriaCeiba
 {
     internal static class Program
@@ -11,7 +13,7 @@ namespace LibreriaCeiba
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new frm_login());
+            Application.Run(new fmr_Inicio_superUsuario());
         }
     }
 }

@@ -1,7 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Compile Update="views\frm_Inicio.cs">
+    <Compile Update="views\fmr_Inicio_superUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="views\frm_Inicio_administrador.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="views\frm_login.cs">
