@@ -1,7 +1,7 @@
 ﻿using LibreriaCeiba.Models;
 using LibreriaCeiba.Properties;
 using MaterialSkin;
-using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Asn1.Ocsp;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,9 +14,9 @@ using System.Windows.Forms;
 
 namespace LibreriaCeiba.views
 {
-    public partial class fmr_Libros : MaterialSkin.Controls.MaterialForm
+    public partial class frm_Productos : MaterialSkin.Controls.MaterialForm
     {
-        public fmr_Libros()
+        public frm_Productos()
         {
             InitializeComponent();
 
@@ -31,39 +31,9 @@ namespace LibreriaCeiba.views
                 TextShade.BLACK);
         }
 
-        private void fmr_Libros_Load(object sender, EventArgs e)
-        {
-            if (dgvLibros.Columns["btnEditar"] == null)
-            {
-                DataGridViewButtonColumn btnEditar = new DataGridViewButtonColumn();
-                btnEditar.Name = "btnEditar";
-                btnEditar.HeaderText = "Editar";
-                btnEditar.Text = "Editar";
-                btnEditar.UseColumnTextForButtonValue = true;
-                dgvLibros.Columns.Add(btnEditar);
-            }
-            if (dgvLibros.Columns["btnEliminar"] == null)
-            {
-                DataGridViewButtonColumn btnEliminar = new DataGridViewButtonColumn();
-                btnEliminar.Name = "btnELiminar";
-                btnEliminar.HeaderText = "Eliminar";
-                btnEliminar.Text = "Eliminar";
-                btnEliminar.UseColumnTextForButtonValue = true;
-                dgvLibros.Columns.Add(btnEliminar);
-            }
-        }
-
         private void btnExaminar_Click(object sender, EventArgs e)
         {
             TOOLS.SeleccionarImagen(picImagen);
-        }
-
-        private void materialTextBox2_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (Char.IsLetter(e.KeyChar))
-            {
-                e.Handled = true;
-            }
         }
 
         private void btnMultiUso_Click(object sender, EventArgs e)
@@ -80,6 +50,22 @@ namespace LibreriaCeiba.views
                 Limpiar();
             }
         }
+        //Funcion para limpiar 
+        public void Limpiar()
+        {
+            lblID.Text = "";
+            txtNombre.Text = "";
+            txtCantidad.Text = "";
+            txtPrecio.Text = "";
+            txtCategotia.Text = "";
+            picImagen.Image = Resources.libros__2_;
+
+        }
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            btnCancelar.Visible = false;
+            btnMultiUso.Text = "GUARDAR";
+        }
 
         private void dgvLibros_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -87,16 +73,14 @@ namespace LibreriaCeiba.views
             if (e.ColumnIndex == 0)
             {
                 //funcion para editar
-                DataGridViewRow Fila = dgvLibros.Rows[e.RowIndex];
+                DataGridViewRow Fila = dgvProductos.Rows[e.RowIndex];
 
                 lblID.Text = Fila.Cells[2].Value.ToString();
                 txtNombre.Text = Fila.Cells[3].Value.ToString();
                 txtCantidad.Text = Fila.Cells[4].Value.ToString();
                 txtPrecio.Text = Fila.Cells[5].Value.ToString();
-                txtEditorial.Text = Fila.Cells[6].Value.ToString();
-                dtpFecha.Value = (DateTime)Fila.Cells[7].Value;
-                txtAutor.Text = Fila.Cells[8].Value.ToString();
-                picImagen.Image = (Bitmap)Fila.Cells[9].Value;
+                txtCategotia.Text = Fila.Cells[6].Value.ToString();
+                picImagen.Image = (Bitmap)Fila.Cells[7].Value;
 
 
                 btnMultiUso.Text = "ACTUALIZAR";
@@ -114,24 +98,26 @@ namespace LibreriaCeiba.views
             }
         }
 
-        //Funcion para limpiar 
-        public void Limpiar()
+        private void frm_Productos_Load(object sender, EventArgs e)
         {
-            lblID.Text = "";
-            txtNombre.Text = "";
-            txtCantidad.Text = "";
-            txtPrecio.Text = "";
-            txtEditorial.Text = "";
-            dtpFecha.Value = DateTime.Now;
-            txtAutor.Text = "";
-            picImagen.Image = Resources.libros__2_;
-
-        }
-
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            btnCancelar.Visible = false;
-            btnMultiUso.Text = "GUARDAR";
+            if (dgvProductos.Columns["btnEditar"] == null)
+            {
+                DataGridViewButtonColumn btnEditar = new DataGridViewButtonColumn();
+                btnEditar.Name = "btnEditar";
+                btnEditar.HeaderText = "Editar";
+                btnEditar.Text = "Editar";
+                btnEditar.UseColumnTextForButtonValue = true;
+                dgvProductos.Columns.Add(btnEditar);
+            }
+            if (dgvProductos.Columns["btnEliminar"] == null)
+            {
+                DataGridViewButtonColumn btnEliminar = new DataGridViewButtonColumn();
+                btnEliminar.Name = "btnELiminar";
+                btnEliminar.HeaderText = "Eliminar";
+                btnEliminar.Text = "Eliminar";
+                btnEliminar.UseColumnTextForButtonValue = true;
+                dgvProductos.Columns.Add(btnEliminar);
+            }
         }
     }
 }

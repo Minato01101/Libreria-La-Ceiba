@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             panel1 = new Panel();
-            lblNombreVendedor = new Label();
-            label2 = new Label();
             picCerrarSesion = new PictureBox();
             label1 = new Label();
             dgvLibros = new DataGridView();
@@ -52,6 +53,7 @@
             btnMultiUso = new MaterialSkin.Controls.MaterialButton();
             btnCancelar = new MaterialSkin.Controls.MaterialButton();
             lblID = new Label();
+            label2 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picCerrarSesion).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvLibros).BeginInit();
@@ -63,7 +65,6 @@
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel1.BackColor = Color.FromArgb(76, 175, 80);
             panel1.BorderStyle = BorderStyle.FixedSingle;
-            panel1.Controls.Add(lblNombreVendedor);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(picCerrarSesion);
             panel1.Controls.Add(label1);
@@ -71,28 +72,6 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(824, 76);
             panel1.TabIndex = 17;
-            // 
-            // lblNombreVendedor
-            // 
-            lblNombreVendedor.Font = new Font("Segoe UI", 9.3F, FontStyle.Bold, GraphicsUnit.Point);
-            lblNombreVendedor.ForeColor = Color.White;
-            lblNombreVendedor.Location = new Point(708, 17);
-            lblNombreVendedor.Name = "lblNombreVendedor";
-            lblNombreVendedor.Size = new Size(79, 40);
-            lblNombreVendedor.TabIndex = 27;
-            lblNombreVendedor.Text = "-------";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.BorderStyle = BorderStyle.Fixed3D;
-            label2.Font = new Font("Segoe UI", 9.3F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(708, 0);
-            label2.Name = "label2";
-            label2.Size = new Size(81, 19);
-            label2.TabIndex = 26;
-            label2.Text = "VENDEDOR";
             // 
             // picCerrarSesion
             // 
@@ -119,11 +98,34 @@
             // 
             dgvLibros.AllowUserToAddRows = false;
             dgvLibros.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.BackColor = Color.LightGreen;
+            dataGridViewCellStyle1.ForeColor = Color.DarkGreen;
+            dgvLibros.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dgvLibros.BackgroundColor = Color.LightGreen;
+            dgvLibros.BorderStyle = BorderStyle.None;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.ForestGreen;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvLibros.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvLibros.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.Honeydew;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = Color.DarkGreen;
+            dataGridViewCellStyle3.SelectionBackColor = Color.Green;
+            dataGridViewCellStyle3.SelectionForeColor = Color.White;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dgvLibros.DefaultCellStyle = dataGridViewCellStyle3;
+            dgvLibros.EnableHeadersVisualStyles = false;
             dgvLibros.Location = new Point(6, 315);
             dgvLibros.Name = "dgvLibros";
             dgvLibros.ReadOnly = true;
             dgvLibros.RowTemplate.Height = 25;
+            dgvLibros.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvLibros.Size = new Size(788, 121);
             dgvLibros.TabIndex = 18;
             dgvLibros.CellContentClick += dgvLibros_CellContentClick;
@@ -402,6 +404,18 @@
             lblID.Text = "id";
             lblID.Visible = false;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BorderStyle = BorderStyle.Fixed3D;
+            label2.Font = new Font("Segoe UI", 9.3F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(674, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(125, 19);
+            label2.TabIndex = 27;
+            label2.Text = "LIBRERIA LA CEIBA";
+            // 
             // fmr_Libros
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -444,8 +458,6 @@
         #endregion
 
         private Panel panel1;
-        private Label lblNombreVendedor;
-        private Label label2;
         private PictureBox picCerrarSesion;
         private Label label1;
         private DataGridView dgvLibros;
@@ -467,5 +479,6 @@
         private MaterialSkin.Controls.MaterialButton btnMultiUso;
         private MaterialSkin.Controls.MaterialButton btnCancelar;
         private Label lblID;
+        private Label label2;
     }
 }
