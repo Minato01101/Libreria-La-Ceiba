@@ -108,6 +108,7 @@
             // panel1
             // 
             panel1.BackColor = Color.LimeGreen;
+            panel1.BorderStyle = BorderStyle.FixedSingle;
             panel1.Controls.Add(label1);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(3, 24);

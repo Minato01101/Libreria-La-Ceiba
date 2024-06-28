@@ -1,4 +1,5 @@
 using LibreriaCeiba.Models;
+using LibreriaCeiba.Properties;
 using MaterialSkin;
 using MySql.Data.MySqlClient;
 using System.Security.Cryptography;
@@ -11,6 +12,9 @@ namespace LibreriaCeiba
     {
         //Variables que serviran mas adelate
         public string Info = "Registro de ventas la ceiba";
+        //
+        bool Mostrar = false;
+
 
         public frm_login()
         {
@@ -33,7 +37,7 @@ namespace LibreriaCeiba
             string clave = txtClave.Text;
             string claveEncriptada = EncoderSHA256(clave);
             //query
-            string query = $"SELECT COUNT(*) FROM tblusers WHERE NombreUsuario = @nombre AND Clave = @clave'";
+            string query = $"SELECT COUNT(*) FROM tblusers WHERE NombreUsuario = @nombre AND Clave = @clave";
 
             MySqlConnection connection = Conexion.getConexion();
             connection.Open();
@@ -84,7 +88,18 @@ namespace LibreriaCeiba
 
         private void pbShow_Click(object sender, EventArgs e)
         {
+            Mostrar =!Mostrar;
 
+            if (Mostrar)
+            {
+                pbShow.Image = Resources.ojo__1_;
+                txtClave.Password = false;
+            }
+            else
+            {
+                pbShow.Image = Resources.invisible__1_;
+                txtClave.Password = true;
+            }
         }
     }
 }
