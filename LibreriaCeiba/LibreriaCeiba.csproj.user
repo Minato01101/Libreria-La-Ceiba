@@ -4,6 +4,9 @@
     <Compile Update="views\fmr_Inicio_superUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="views\fmr_Inicio_Vendedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="views\frm_Inicio_administrador.cs">
       <SubType>Form</SubType>
     </Compile>
