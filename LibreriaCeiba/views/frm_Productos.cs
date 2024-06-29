@@ -16,6 +16,8 @@ namespace LibreriaCeiba.views
 {
     public partial class frm_Productos : MaterialSkin.Controls.MaterialForm
     {
+        //String info para mostrar en mbox
+        string info = "SISTEMA DE VENTAS LA CEIBA";
         public frm_Productos()
         {
             InitializeComponent();
@@ -36,10 +38,41 @@ namespace LibreriaCeiba.views
             TOOLS.SeleccionarImagen(picImagen);
         }
 
+        public void ValidarProductos()
+        {
+            if (string.IsNullOrEmpty(txtNombre.Text))
+            {
+                MessageBox.Show("Por favor, Ingrese Nombre", info, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (string.IsNullOrEmpty(txtCategotia.Text))
+            {
+                MessageBox.Show("Por favor, Ingrese la Cantidad", info, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (string.IsNullOrEmpty(txtPrecio.Text))
+            {
+                MessageBox.Show("Por favor, Ingrese el Precio", info, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (string.IsNullOrEmpty(txtCategotia.Text))
+            {
+                MessageBox.Show("Por favor, Ingrese Categoria", info, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
+
         private void btnMultiUso_Click(object sender, EventArgs e)
         {
+            //Validando datos
+            ValidarProductos();
+
             if (btnMultiUso.Text == "GUARDAR")
             {
+                //Funcion para guardar en base de dato
 
             }
             else if (btnMultiUso.Text == "ACTUALIZAR")
@@ -100,23 +133,16 @@ namespace LibreriaCeiba.views
 
         private void frm_Productos_Load(object sender, EventArgs e)
         {
-            if (dgvProductos.Columns["btnEditar"] == null)
+
+            //Metodo para añadir los productos a dgv
+
+        }
+
+        private void txtCantidad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsLetter(e.KeyChar))
             {
-                DataGridViewButtonColumn btnEditar = new DataGridViewButtonColumn();
-                btnEditar.Name = "btnEditar";
-                btnEditar.HeaderText = "Editar";
-                btnEditar.Text = "Editar";
-                btnEditar.UseColumnTextForButtonValue = true;
-                dgvProductos.Columns.Add(btnEditar);
-            }
-            if (dgvProductos.Columns["btnEliminar"] == null)
-            {
-                DataGridViewButtonColumn btnEliminar = new DataGridViewButtonColumn();
-                btnEliminar.Name = "btnELiminar";
-                btnEliminar.HeaderText = "Eliminar";
-                btnEliminar.Text = "Eliminar";
-                btnEliminar.UseColumnTextForButtonValue = true;
-                dgvProductos.Columns.Add(btnEliminar);
+                e.Handled = true;
             }
         }
     }

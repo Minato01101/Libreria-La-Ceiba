@@ -16,6 +16,9 @@ namespace LibreriaCeiba.views
 {
     public partial class fmr_Libros : MaterialSkin.Controls.MaterialForm
     {
+        //String info para mostrar en mbox
+        string info = "SISTEMA DE VENTAS LA CEIBA";
+
         public fmr_Libros()
         {
             InitializeComponent();
@@ -33,24 +36,7 @@ namespace LibreriaCeiba.views
 
         private void fmr_Libros_Load(object sender, EventArgs e)
         {
-            if (dgvLibros.Columns["btnEditar"] == null)
-            {
-                DataGridViewButtonColumn btnEditar = new DataGridViewButtonColumn();
-                btnEditar.Name = "btnEditar";
-                btnEditar.HeaderText = "Editar";
-                btnEditar.Text = "Editar";
-                btnEditar.UseColumnTextForButtonValue = true;
-                dgvLibros.Columns.Add(btnEditar);
-            }
-            if (dgvLibros.Columns["btnEliminar"] == null)
-            {
-                DataGridViewButtonColumn btnEliminar = new DataGridViewButtonColumn();
-                btnEliminar.Name = "btnELiminar";
-                btnEliminar.HeaderText = "Eliminar";
-                btnEliminar.Text = "Eliminar";
-                btnEliminar.UseColumnTextForButtonValue = true;
-                dgvLibros.Columns.Add(btnEliminar);
-            }
+            
         }
 
         private void btnExaminar_Click(object sender, EventArgs e)
@@ -68,6 +54,8 @@ namespace LibreriaCeiba.views
 
         private void btnMultiUso_Click(object sender, EventArgs e)
         {
+            ValidarLibros();
+
             if (btnMultiUso.Text == "GUARDAR")
             {
 
@@ -78,6 +66,39 @@ namespace LibreriaCeiba.views
 
                 btnMultiUso.Text = "GUARDAR";
                 Limpiar();
+            }
+        }
+
+        private void ValidarLibros()
+        {
+            if (string.IsNullOrEmpty(txtNombre.Text))
+            {
+                MessageBox.Show("Por favor, ingrese nombre del libro", info, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (string.IsNullOrEmpty(txtCantidad.Text))
+            {
+                MessageBox.Show("Por favor, ingrese cantidad del libro", info, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (string.IsNullOrEmpty(txtPrecio.Text))
+            {
+                MessageBox.Show("Por favor, ingrese precio del libro", info, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (string.IsNullOrEmpty(txtEditorial.Text))
+            {
+                MessageBox.Show("Por favor, ingrese Editorial del libro", info, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (string.IsNullOrEmpty(txtAutor.Text))
+            {
+                MessageBox.Show("Por favor, ingrese Autor del libro", info, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
         }
 
