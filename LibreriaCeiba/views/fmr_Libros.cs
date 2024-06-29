@@ -103,6 +103,7 @@ namespace LibreriaCeiba.views
                 {
                     MessageBox.Show("Correcto", "Libro Añadido correctamente");
                     ReloadTable();
+                    Limpiar();
                 }
             }
             else if (btnMultiUso.Text == "ACTUALIZAR")
