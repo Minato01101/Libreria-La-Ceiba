@@ -30,7 +30,7 @@ namespace LibreriaCeiba.Models
                 cmd.Parameters.Add(new MySqlParameter("@Nombre", product.Nombre));
                 cmd.Parameters.Add(new MySqlParameter("@Cantidad", product.Cantidad));
                 cmd.Parameters.Add(new MySqlParameter("@Precio", product.Precio));
-                cmd.Parameters.Add(new MySqlParameter("@Foto", "product.Foto"));
+                cmd.Parameters.Add(new MySqlParameter("@Foto", TOOLS.ConvertirImagenBinario(product.Foto)));
                 newId = (int)cmd.ExecuteScalar();
             }
             catch (MySqlException ex)
@@ -100,12 +100,12 @@ namespace LibreriaCeiba.Models
             return GetProductos().Find(u => u.Id == producto.Id)!;
         }
 
-        public static List<Producto> GetProductos()
+        public static List<Producto> GetProductos(bool libros = false)
         {
             List<Producto> list = new List<Producto>();
             MySqlConnection con = Conexion.getConexion();
             con.Open();
-            string query = "SELECT * FROM tblproductos";
+            string query = libros ? "SELECT * FROM tblproductos WHERE Categoria != 'Libro'" : "SELECT * FROM tblproductos";
             try
             {
                 MySqlCommand cmd = new MySqlCommand(query, con);
@@ -119,7 +119,7 @@ namespace LibreriaCeiba.Models
                         Nombre = reader.GetString(2),
                         Cantidad = reader.GetInt32(3),
                         Precio = reader.GetDecimal(4),
-                        //Falta foto
+                        Foto = (Bitmap)TOOLS.ConvertirBinarioImagen((byte[]) reader[5])
                     });
                 }
             }
