@@ -24,12 +24,12 @@ namespace LibreriaCeiba.Models
         }
 
         //Funcion que convierte Imagen a binario
-        public static byte[] ConvertirImagenBinario(PictureBox pictureBox)
+        public static byte[] ConvertirImagenBinario(Image pictureBox)
         {
             using (MemoryStream memoryStream = new MemoryStream())
             {
                 // Guardar la imagen del PictureBox en el flujo de memoria
-                pictureBox.Image.Save(memoryStream, pictureBox.Image.RawFormat);
+                pictureBox.Save(memoryStream, pictureBox.RawFormat);
 
                 // Convertir la imagen a un array de bytes
                 return memoryStream.ToArray();
