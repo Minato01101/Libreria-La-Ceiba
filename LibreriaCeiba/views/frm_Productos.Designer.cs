@@ -1,6 +1,6 @@
 ﻿namespace LibreriaCeiba.views
 {
-    partial class frm_Libros
+    partial class frm_Productos
     {
         /// <summary>
         /// Required designer variable.
@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             panel1 = new Panel();
             label2 = new Label();
             picCerrarSesion = new PictureBox();
@@ -47,16 +47,16 @@
             btnCancelar = new MaterialSkin.Controls.MaterialButton();
             btnMultiUso = new MaterialSkin.Controls.MaterialButton();
             dgvProductos = new DataGridView();
-            btnEditar = new DataGridViewTextBoxColumn();
-            btnEliminar = new DataGridViewTextBoxColumn();
+            lblID = new Label();
+            nudCantidad = new NumericUpDown();
+            btnEditar = new DataGridViewButtonColumn();
+            btnEliminar = new DataGridViewButtonColumn();
             ID = new DataGridViewTextBoxColumn();
             Nombre = new DataGridViewTextBoxColumn();
             Categoria = new DataGridViewTextBoxColumn();
             Cantidad = new DataGridViewTextBoxColumn();
             Precio = new DataGridViewTextBoxColumn();
             Foto = new DataGridViewImageColumn();
-            lblID = new Label();
-            nudCantidad = new NumericUpDown();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picCerrarSesion).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picImagen).BeginInit();
@@ -291,30 +291,30 @@
             // 
             dgvProductos.AllowUserToAddRows = false;
             dgvProductos.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle4.BackColor = Color.LightGreen;
-            dataGridViewCellStyle4.ForeColor = Color.DarkGreen;
-            dgvProductos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.BackColor = Color.LightGreen;
+            dataGridViewCellStyle1.ForeColor = Color.DarkGreen;
+            dgvProductos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dgvProductos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvProductos.BackgroundColor = Color.LightGreen;
             dgvProductos.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = Color.ForestGreen;
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            dgvProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.ForestGreen;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvProductos.Columns.AddRange(new DataGridViewColumn[] { btnEditar, btnEliminar, ID, Nombre, Categoria, Cantidad, Precio, Foto });
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = Color.Honeydew;
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle6.ForeColor = Color.DarkGreen;
-            dataGridViewCellStyle6.SelectionBackColor = Color.Green;
-            dataGridViewCellStyle6.SelectionForeColor = Color.White;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
-            dgvProductos.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.Honeydew;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = Color.DarkGreen;
+            dataGridViewCellStyle3.SelectionBackColor = Color.Green;
+            dataGridViewCellStyle3.SelectionForeColor = Color.White;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dgvProductos.DefaultCellStyle = dataGridViewCellStyle3;
             dgvProductos.EnableHeadersVisualStyles = false;
             dgvProductos.Location = new Point(6, 323);
             dgvProductos.Name = "dgvProductos";
@@ -326,12 +326,36 @@
             dgvProductos.TabIndex = 39;
             dgvProductos.CellContentClick += dgvLibros_CellContentClick;
             // 
+            // lblID
+            // 
+            lblID.AutoSize = true;
+            lblID.Location = new Point(41, 296);
+            lblID.Name = "lblID";
+            lblID.Size = new Size(17, 15);
+            lblID.TabIndex = 40;
+            lblID.Text = "id";
+            lblID.Visible = false;
+            // 
+            // nudCantidad
+            // 
+            nudCantidad.BackColor = SystemColors.InfoText;
+            nudCantidad.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            nudCantidad.ForeColor = SystemColors.Window;
+            nudCantidad.Location = new Point(122, 172);
+            nudCantidad.Name = "nudCantidad";
+            nudCantidad.Size = new Size(152, 33);
+            nudCantidad.TabIndex = 42;
+            // 
             // btnEditar
             // 
             btnEditar.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
             btnEditar.HeaderText = "Editar";
             btnEditar.Name = "btnEditar";
             btnEditar.ReadOnly = true;
+            btnEditar.Resizable = DataGridViewTriState.True;
+            btnEditar.SortMode = DataGridViewColumnSortMode.Automatic;
+            btnEditar.Text = "Editar";
+            btnEditar.UseColumnTextForButtonValue = true;
             btnEditar.Width = 75;
             // 
             // btnEliminar
@@ -340,6 +364,10 @@
             btnEliminar.HeaderText = "Eliminar";
             btnEliminar.Name = "btnEliminar";
             btnEliminar.ReadOnly = true;
+            btnEliminar.Resizable = DataGridViewTriState.True;
+            btnEliminar.SortMode = DataGridViewColumnSortMode.Automatic;
+            btnEliminar.Text = "Eliminar";
+            btnEliminar.UseColumnTextForButtonValue = true;
             btnEliminar.Width = 75;
             // 
             // ID
@@ -379,30 +407,11 @@
             // Foto
             // 
             Foto.HeaderText = "Foto";
+            Foto.ImageLayout = DataGridViewImageCellLayout.Zoom;
             Foto.Name = "Foto";
             Foto.ReadOnly = true;
             // 
-            // lblID
-            // 
-            lblID.AutoSize = true;
-            lblID.Location = new Point(41, 296);
-            lblID.Name = "lblID";
-            lblID.Size = new Size(17, 15);
-            lblID.TabIndex = 40;
-            lblID.Text = "id";
-            lblID.Visible = false;
-            // 
-            // nudCantidad
-            // 
-            nudCantidad.BackColor = SystemColors.InfoText;
-            nudCantidad.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            nudCantidad.ForeColor = SystemColors.Window;
-            nudCantidad.Location = new Point(122, 172);
-            nudCantidad.Name = "nudCantidad";
-            nudCantidad.Size = new Size(152, 33);
-            nudCantidad.TabIndex = 42;
-            // 
-            // frm_Libros
+            // frm_Productos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -423,7 +432,7 @@
             Controls.Add(materialLabel1);
             Controls.Add(panel1);
             FormStyle = FormStyles.ActionBar_None;
-            Name = "frm_Libros";
+            Name = "frm_Productos";
             Padding = new Padding(3, 24, 3, 3);
             Text = "frm_Productos";
             Load += frm_Productos_Load;
@@ -456,14 +465,14 @@
         private MaterialSkin.Controls.MaterialButton btnMultiUso;
         private DataGridView dgvProductos;
         private Label lblID;
-        private DataGridViewTextBoxColumn btnEditar;
-        private DataGridViewTextBoxColumn btnEliminar;
+        private NumericUpDown nudCantidad;
+        private DataGridViewButtonColumn btnEditar;
+        private DataGridViewButtonColumn btnEliminar;
         private DataGridViewTextBoxColumn ID;
         private DataGridViewTextBoxColumn Nombre;
         private DataGridViewTextBoxColumn Categoria;
         private DataGridViewTextBoxColumn Cantidad;
         private DataGridViewTextBoxColumn Precio;
         private DataGridViewImageColumn Foto;
-        private NumericUpDown nudCantidad;
     }
 }

@@ -14,11 +14,11 @@ using System.Windows.Forms;
 
 namespace LibreriaCeiba.views
 {
-    public partial class frm_Libros : MaterialSkin.Controls.MaterialForm
+    public partial class frm_Productos : MaterialSkin.Controls.MaterialForm
     {
         //String info para mostrar en mbox
         string info = "SISTEMA DE VENTAS LA CEIBA";
-        public frm_Libros()
+        public frm_Productos()
         {
             InitializeComponent();
 
@@ -83,11 +83,24 @@ namespace LibreriaCeiba.views
                     Id = -1,
                     Nombre = txtNombre.Text.Trim(),
                     Cantidad = (int)nudCantidad.Value,
+                    Categoria = txtCategotia.Text,
+                    Precio = decimal.Parse(txtPrecio.Text),
+                    Foto = (Bitmap)picImagen.Image
                 });
+                ReloadTable();
+                Limpiar();
             }
             else if (btnMultiUso.Text == "ACTUALIZAR")
             {
                 //Funcion para Guardar un nuevo libro
+                Producto.ModificarProducto(new Producto()
+                {
+                    Nombre = txtNombre.Text.Trim(),
+                    Cantidad = (int)nudCantidad.Value,
+                    Categoria = txtCategotia.Text,
+                    Precio = decimal.Parse(txtPrecio.Text),
+                    Foto = (Bitmap)picImagen.Image
+                });
 
                 btnMultiUso.Text = "GUARDAR";
                 Limpiar();
@@ -120,9 +133,9 @@ namespace LibreriaCeiba.views
 
                 lblID.Text = Fila.Cells[2].Value.ToString();
                 txtNombre.Text = Fila.Cells[3].Value.ToString();
-                nudCantidad.Value = int.Parse(Fila.Cells[4].Value.ToString());
-                txtPrecio.Text = Fila.Cells[5].Value.ToString();
-                txtCategotia.Text = Fila.Cells[6].Value.ToString();
+                nudCantidad.Value = int.Parse(Fila.Cells[5].Value.ToString());
+                txtPrecio.Text = Fila.Cells[6].Value.ToString();
+                txtCategotia.Text = Fila.Cells[4].Value.ToString();
                 picImagen.Image = (Bitmap)Fila.Cells[7].Value;
 
 
@@ -136,7 +149,11 @@ namespace LibreriaCeiba.views
                 if (respuesta == DialogResult.Yes)
                 {
                     //Funcion para eliminar 
-
+                    Producto.EliminarProducto(new Producto()
+                    {
+                        Id = int.Parse(dgvProductos.Rows[e.RowIndex].Cells[2].Value.ToString())
+                    });
+                    ReloadTable();
                 }
             }
         }
@@ -145,7 +162,23 @@ namespace LibreriaCeiba.views
         {
 
             //Metodo para añadir los productos a dgv
+            ReloadTable();
+        }
 
+        private void ReloadTable()
+        {
+            dgvProductos.Rows.Clear();
+            foreach (var producto in Producto.GetProductos(true))
+            {
+                dgvProductos.Rows.Add(
+                    "","",
+                    producto.Id,
+                    producto.Nombre,
+                    producto.Categoria,
+                    producto.Cantidad,
+                    producto.Precio,
+                    producto.Foto);
+            }
         }
 
         private void txtCantidad_KeyPress(object sender, KeyPressEventArgs e)
