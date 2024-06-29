@@ -21,7 +21,7 @@ namespace LibreriaCeiba.Models
         {
             MySqlConnection con = Conexion.getConexion();
             con.Open();
-            string query = "INSERT INTO tblproductos (Categoria,Nombre,Cantidad,Precio,Foto) VALUE (@Categoria,@Nombre,@Cantidad,@Precio,@Foto); SELECT CAST(scope_identity() AS int);";
+            string query = "INSERT INTO tblproductos (Categoria,Nombre,Cantidad,Precio,Foto) VALUE (@Categoria,@Nombre,@Cantidad,@Precio,@Foto); SELECT LAST_INSERT_ID();";
             int newId;
             try
             {
@@ -31,7 +31,8 @@ namespace LibreriaCeiba.Models
                 cmd.Parameters.Add(new MySqlParameter("@Cantidad", product.Cantidad));
                 cmd.Parameters.Add(new MySqlParameter("@Precio", product.Precio));
                 cmd.Parameters.Add(new MySqlParameter("@Foto", TOOLS.ConvertirImagenBinario(product.Foto)));
-                newId = (int)cmd.ExecuteScalar();
+                newId = (int)(ulong)cmd.ExecuteScalar();
+                MessageBox.Show(newId.ToString(),"asds");
             }
             catch (MySqlException ex)
             {

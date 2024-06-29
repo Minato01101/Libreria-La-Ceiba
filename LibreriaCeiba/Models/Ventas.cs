@@ -17,7 +17,7 @@ namespace LibreriaCeiba.Models
         {
             MySqlConnection con = Conexion.getConexion();
             con.Open();
-            string query = "INSERT INTO tblordenes_final (idClientes,idUsuario,FechaOrden) VALUES (@Cliente,@Vendedor,@Fecha); SELECT CAST(scope_identity() AS int);";
+            string query = "INSERT INTO tblordenes_final (idClientes,idUsuario,FechaOrden) VALUES (@Cliente,@Vendedor,@Fecha); SELECT LAST_INSERT_ID();";
             int newID = 0;
             try
             {
@@ -25,7 +25,7 @@ namespace LibreriaCeiba.Models
                 cmd.Parameters.Add(new MySqlParameter("@Cliente", cliente.Id));
                 cmd.Parameters.Add(new MySqlParameter("@Vendedor", vendedor.Id));
                 cmd.Parameters.Add(new MySqlParameter("@Fecha", DateTime.Now.Date));
-                newID = (int)cmd.ExecuteScalar();
+                newID = (int)(ulong)cmd.ExecuteScalar();
             }
             catch (MySqlException ex)
             {

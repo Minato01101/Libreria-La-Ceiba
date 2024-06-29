@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MaterialSkin.Controls;
 
 namespace LibreriaCeiba.views
 {
@@ -36,7 +37,25 @@ namespace LibreriaCeiba.views
 
         private void fmr_Libros_Load(object sender, EventArgs e)
         {
-            
+            ReloadTable();
+        }
+
+        private void ReloadTable()
+        {
+            dgvLibros.Rows.Clear();
+            foreach (var libro in Libro.GetLibros())
+            {
+                dgvLibros.Rows.Add(
+                    "","",
+                    libro.Id,
+                    libro.Nombre,
+                    libro.Cantidad,
+                    libro.Precio,
+                    libro.Foto,
+                    libro.Autor,
+                    libro.Editorial,
+                    libro.FechaPublicacion.ToShortDateString());
+            }
         }
 
         private void btnExaminar_Click(object sender, EventArgs e)
@@ -44,9 +63,16 @@ namespace LibreriaCeiba.views
             TOOLS.SeleccionarImagen(picImagen);
         }
 
-        private void materialTextBox2_KeyPress(object sender, KeyPressEventArgs e)
+        private void materialTextBox2_KeyPress(object? sender, KeyPressEventArgs e)
         {
-            if (Char.IsLetter(e.KeyChar))
+            MaterialTextBox textBox = sender as MaterialTextBox;
+
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            if (textBox.Text.Contains('.') && e.KeyChar == '.')
             {
                 e.Handled = true;
             }
@@ -54,11 +80,30 @@ namespace LibreriaCeiba.views
 
         private void btnMultiUso_Click(object sender, EventArgs e)
         {
-            ValidarLibros();
+            if (!ValidarLibros())
+            {
+                return;
+            }
 
             if (btnMultiUso.Text == "GUARDAR")
             {
-
+                Libro libro = Libro.CrearLibro(new Libro
+                {
+                    Id = -1,
+                    Nombre = txtNombre.Text.Trim(),
+                    Autor = txtAutor.Text.Trim(),
+                    Cantidad = (int)nudCantidad.Value,
+                    Editorial = txtEditorial.Text.Trim(),
+                    Categoria = "Libro",
+                    FechaPublicacion = dtpFecha.Value,
+                    Foto = (Bitmap)picImagen.Image,
+                    Precio = decimal.Parse(txtPrecio.Text.Trim())
+                });
+                if (libro != null)
+                {
+                    MessageBox.Show("Correcto", "Libro Añadido correctamente");
+                    ReloadTable();
+                }
             }
             else if (btnMultiUso.Text == "ACTUALIZAR")
             {
@@ -69,37 +114,33 @@ namespace LibreriaCeiba.views
             }
         }
 
-        private void ValidarLibros()
+        private bool ValidarLibros()
         {
             if (string.IsNullOrEmpty(txtNombre.Text))
             {
                 MessageBox.Show("Por favor, ingrese nombre del libro", info, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (string.IsNullOrEmpty(txtCantidad.Text))
-            {
-                MessageBox.Show("Por favor, ingrese cantidad del libro", info, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                return false;
             }
 
             if (string.IsNullOrEmpty(txtPrecio.Text))
             {
                 MessageBox.Show("Por favor, ingrese precio del libro", info, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                return false;
             }
 
             if (string.IsNullOrEmpty(txtEditorial.Text))
             {
                 MessageBox.Show("Por favor, ingrese Editorial del libro", info, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                return false;
             }
 
             if (string.IsNullOrEmpty(txtAutor.Text))
             {
                 MessageBox.Show("Por favor, ingrese Autor del libro", info, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                return false;
             }
+
+            return true;
         }
 
         private void dgvLibros_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -112,7 +153,7 @@ namespace LibreriaCeiba.views
 
                 lblID.Text = Fila.Cells[2].Value.ToString();
                 txtNombre.Text = Fila.Cells[3].Value.ToString();
-                txtCantidad.Text = Fila.Cells[4].Value.ToString();
+                nudCantidad.Value = decimal.Parse(Fila.Cells[4].Value.ToString());
                 txtPrecio.Text = Fila.Cells[5].Value.ToString();
                 txtEditorial.Text = Fila.Cells[6].Value.ToString();
                 dtpFecha.Value = (DateTime)Fila.Cells[7].Value;
@@ -140,7 +181,7 @@ namespace LibreriaCeiba.views
         {
             lblID.Text = "";
             txtNombre.Text = "";
-            txtCantidad.Text = "";
+            nudCantidad.Value = 0;
             txtPrecio.Text = "";
             txtEditorial.Text = "";
             dtpFecha.Value = DateTime.Now;

@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             panel1 = new Panel();
             label2 = new Label();
             picCerrarSesion = new PictureBox();
@@ -43,7 +43,6 @@
             materialLabel6 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel7 = new MaterialSkin.Controls.MaterialLabel();
             txtNombre = new MaterialSkin.Controls.MaterialTextBox();
-            txtCantidad = new MaterialSkin.Controls.MaterialTextBox();
             txtPrecio = new MaterialSkin.Controls.MaterialTextBox();
             txtEditorial = new MaterialSkin.Controls.MaterialTextBox();
             txtAutor = new MaterialSkin.Controls.MaterialTextBox();
@@ -54,8 +53,9 @@
             btnCancelar = new MaterialSkin.Controls.MaterialButton();
             lblID = new Label();
             dgvLibros = new DataGridView();
-            btnEditar = new DataGridViewTextBoxColumn();
-            btnEliminar = new DataGridViewTextBoxColumn();
+            nudCantidad = new NumericUpDown();
+            btnEditar = new DataGridViewButtonColumn();
+            btnEliminar = new DataGridViewButtonColumn();
             ID = new DataGridViewTextBoxColumn();
             Nombre = new DataGridViewTextBoxColumn();
             Cantidad = new DataGridViewTextBoxColumn();
@@ -68,6 +68,7 @@
             ((System.ComponentModel.ISupportInitialize)picCerrarSesion).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picImagen).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvLibros).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudCantidad).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -217,25 +218,6 @@
             txtNombre.Text = "";
             txtNombre.TrailingIcon = null;
             txtNombre.UseTallSize = false;
-            // 
-            // txtCantidad
-            // 
-            txtCantidad.AnimateReadOnly = false;
-            txtCantidad.BorderStyle = BorderStyle.None;
-            txtCantidad.Depth = 0;
-            txtCantidad.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            txtCantidad.LeadingIcon = null;
-            txtCantidad.Location = new Point(129, 168);
-            txtCantidad.MaxLength = 50;
-            txtCantidad.MouseState = MaterialSkin.MouseState.OUT;
-            txtCantidad.Multiline = false;
-            txtCantidad.Name = "txtCantidad";
-            txtCantidad.Size = new Size(152, 36);
-            txtCantidad.TabIndex = 2;
-            txtCantidad.Text = "";
-            txtCantidad.TrailingIcon = null;
-            txtCantidad.UseTallSize = false;
-            txtCantidad.KeyPress += materialTextBox2_KeyPress;
             // 
             // txtPrecio
             // 
@@ -394,30 +376,30 @@
             // 
             dgvLibros.AllowUserToAddRows = false;
             dgvLibros.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle4.BackColor = Color.LightGreen;
-            dataGridViewCellStyle4.ForeColor = Color.DarkGreen;
-            dgvLibros.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.BackColor = Color.LightGreen;
+            dataGridViewCellStyle1.ForeColor = Color.DarkGreen;
+            dgvLibros.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dgvLibros.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvLibros.BackgroundColor = Color.LightGreen;
             dgvLibros.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = Color.ForestGreen;
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            dgvLibros.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.ForestGreen;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvLibros.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvLibros.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvLibros.Columns.AddRange(new DataGridViewColumn[] { btnEditar, btnEliminar, ID, Nombre, Cantidad, Precio, Foto, Autor, Editorial, Fecha });
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = Color.Honeydew;
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle6.ForeColor = Color.DarkGreen;
-            dataGridViewCellStyle6.SelectionBackColor = Color.Green;
-            dataGridViewCellStyle6.SelectionForeColor = Color.White;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
-            dgvLibros.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.Honeydew;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = Color.DarkGreen;
+            dataGridViewCellStyle3.SelectionBackColor = Color.Green;
+            dataGridViewCellStyle3.SelectionForeColor = Color.White;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dgvLibros.DefaultCellStyle = dataGridViewCellStyle3;
             dgvLibros.EnableHeadersVisualStyles = false;
             dgvLibros.Location = new Point(6, 323);
             dgvLibros.Name = "dgvLibros";
@@ -425,8 +407,18 @@
             dgvLibros.RowHeadersVisible = false;
             dgvLibros.RowTemplate.Height = 25;
             dgvLibros.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvLibros.Size = new Size(788, 121);
+            dgvLibros.Size = new Size(788, 154);
             dgvLibros.TabIndex = 40;
+            // 
+            // nudCantidad
+            // 
+            nudCantidad.BackColor = SystemColors.InfoText;
+            nudCantidad.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            nudCantidad.ForeColor = SystemColors.Window;
+            nudCantidad.Location = new Point(129, 171);
+            nudCantidad.Name = "nudCantidad";
+            nudCantidad.Size = new Size(152, 33);
+            nudCantidad.TabIndex = 41;
             // 
             // btnEditar
             // 
@@ -434,6 +426,10 @@
             btnEditar.HeaderText = "Editar";
             btnEditar.Name = "btnEditar";
             btnEditar.ReadOnly = true;
+            btnEditar.Resizable = DataGridViewTriState.True;
+            btnEditar.SortMode = DataGridViewColumnSortMode.Automatic;
+            btnEditar.Text = "Editar";
+            btnEditar.UseColumnTextForButtonValue = true;
             btnEditar.Width = 65;
             // 
             // btnEliminar
@@ -442,6 +438,10 @@
             btnEliminar.HeaderText = "Eliminar";
             btnEliminar.Name = "btnEliminar";
             btnEliminar.ReadOnly = true;
+            btnEliminar.Resizable = DataGridViewTriState.True;
+            btnEliminar.SortMode = DataGridViewColumnSortMode.Automatic;
+            btnEliminar.Text = "Eliminar";
+            btnEliminar.UseColumnTextForButtonValue = true;
             btnEliminar.Width = 65;
             // 
             // ID
@@ -475,6 +475,7 @@
             // Foto
             // 
             Foto.HeaderText = "Foto";
+            Foto.ImageLayout = DataGridViewImageCellLayout.Zoom;
             Foto.Name = "Foto";
             Foto.ReadOnly = true;
             // 
@@ -500,7 +501,8 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 483);
+            Controls.Add(nudCantidad);
             Controls.Add(dgvLibros);
             Controls.Add(lblID);
             Controls.Add(btnCancelar);
@@ -511,7 +513,6 @@
             Controls.Add(txtAutor);
             Controls.Add(txtEditorial);
             Controls.Add(txtPrecio);
-            Controls.Add(txtCantidad);
             Controls.Add(txtNombre);
             Controls.Add(materialLabel5);
             Controls.Add(materialLabel6);
@@ -531,6 +532,7 @@
             ((System.ComponentModel.ISupportInitialize)picCerrarSesion).EndInit();
             ((System.ComponentModel.ISupportInitialize)picImagen).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvLibros).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudCantidad).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -548,7 +550,6 @@
         private MaterialSkin.Controls.MaterialLabel materialLabel6;
         private MaterialSkin.Controls.MaterialLabel materialLabel7;
         private MaterialSkin.Controls.MaterialTextBox txtNombre;
-        private MaterialSkin.Controls.MaterialTextBox txtCantidad;
         private MaterialSkin.Controls.MaterialTextBox txtPrecio;
         private MaterialSkin.Controls.MaterialTextBox txtEditorial;
         private MaterialSkin.Controls.MaterialTextBox txtAutor;
@@ -560,8 +561,9 @@
         private Label lblID;
         private Label label2;
         private DataGridView dgvLibros;
-        private DataGridViewTextBoxColumn btnEditar;
-        private DataGridViewTextBoxColumn btnEliminar;
+        private NumericUpDown nudCantidad;
+        private DataGridViewButtonColumn btnEditar;
+        private DataGridViewButtonColumn btnEliminar;
         private DataGridViewTextBoxColumn ID;
         private DataGridViewTextBoxColumn Nombre;
         private DataGridViewTextBoxColumn Cantidad;

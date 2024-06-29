@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace LibreriaCeiba.Models
 {
@@ -12,6 +13,41 @@ namespace LibreriaCeiba.Models
         public string Autor { get; set; }
         public string Editorial { get; set; }
         public DateTime FechaPublicacion { get; set; }
+
+        public static Libro CrearLibro(Libro libro)
+        {
+            Producto producto = CrearProducto(libro);
+            if (producto == null)
+            {
+                MessageBox.Show("Error", "Error");
+                return null;
+            }
+
+            MySqlConnection con = Conexion.getConexion();
+            con.Open();
+            string query = "INSERT INTO tbllibros (idProducto,Autor,Editorial,FechaPublicacion) VALUE (@Producto,@Autor,@Editorial,@Fecha);";
+            try
+            {
+
+                MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.Add(new MySqlParameter("@Producto", producto.Id));
+                cmd.Parameters.Add(new MySqlParameter("@Autor", libro.Autor));
+                cmd.Parameters.Add(new MySqlParameter("@Editorial", libro.Editorial));
+                cmd.Parameters.Add(new MySqlParameter("@Fecha", libro.FechaPublicacion));
+                cmd.ExecuteNonQuery();
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Error", "Error: " + ex.Message);
+                return null;
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return GetLibros().Find(l => l.Id == producto.Id);
+        }
 
         public static List<Libro> GetLibros()
         {
