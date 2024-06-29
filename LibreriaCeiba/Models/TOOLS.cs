@@ -25,7 +25,7 @@ namespace LibreriaCeiba.Models
         }
 
         //Funcion que convierte Imagen a binario
-        public static byte[] ConvertirImagenBinario(Image pictureBox)
+        public static byte[] ConvertirImagenBinario(Bitmap pictureBox)
         {
             using (MemoryStream memoryStream = new MemoryStream())
             {

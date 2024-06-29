@@ -48,7 +48,7 @@ namespace LibreriaCeiba.Models
         {
             MySqlConnection con = Conexion.getConexion();
             con.Open();
-            string query = "UPDATE tblclientes SET Nombre = @Nombre, Apellido = @Apellido, Direccion = @Direccion, Telefono = @Telefono";
+            string query = "UPDATE tblclientes SET Nombre = @Nombre, Apellido = @Apellido, Direccion = @Direccion, Telefono = @Telefono WHERE idClientes = @Id";
             try
             {
                 MySqlCommand cmd = new MySqlCommand(query, con);
@@ -56,6 +56,7 @@ namespace LibreriaCeiba.Models
                 cmd.Parameters.Add(new MySqlParameter("@Apellido", cliente.Apellido));
                 cmd.Parameters.Add(new MySqlParameter("@Direccion", cliente.Direccion));
                 cmd.Parameters.Add(new MySqlParameter("@Telefono", cliente.Telefono));
+                cmd.Parameters.Add(new MySqlParameter("@Id", cliente.Id));
                 cmd.ExecuteNonQuery();
             }
             catch (MySqlException ex)

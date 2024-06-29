@@ -53,7 +53,6 @@
             btnCancelar = new MaterialSkin.Controls.MaterialButton();
             lblID = new Label();
             dgvLibros = new DataGridView();
-            nudCantidad = new NumericUpDown();
             btnEditar = new DataGridViewButtonColumn();
             btnEliminar = new DataGridViewButtonColumn();
             ID = new DataGridViewTextBoxColumn();
@@ -64,6 +63,7 @@
             Autor = new DataGridViewTextBoxColumn();
             Editorial = new DataGridViewTextBoxColumn();
             Fecha = new DataGridViewTextBoxColumn();
+            nudCantidad = new NumericUpDown();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picCerrarSesion).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picImagen).BeginInit();
@@ -365,6 +365,7 @@
             // lblID
             // 
             lblID.AutoSize = true;
+            lblID.ForeColor = SystemColors.Control;
             lblID.Location = new Point(51, 273);
             lblID.Name = "lblID";
             lblID.Size = new Size(17, 15);
@@ -402,6 +403,7 @@
             dgvLibros.DefaultCellStyle = dataGridViewCellStyle3;
             dgvLibros.EnableHeadersVisualStyles = false;
             dgvLibros.Location = new Point(6, 323);
+            dgvLibros.MultiSelect = false;
             dgvLibros.Name = "dgvLibros";
             dgvLibros.ReadOnly = true;
             dgvLibros.RowHeadersVisible = false;
@@ -409,16 +411,7 @@
             dgvLibros.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvLibros.Size = new Size(788, 154);
             dgvLibros.TabIndex = 40;
-            // 
-            // nudCantidad
-            // 
-            nudCantidad.BackColor = SystemColors.InfoText;
-            nudCantidad.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            nudCantidad.ForeColor = SystemColors.Window;
-            nudCantidad.Location = new Point(129, 171);
-            nudCantidad.Name = "nudCantidad";
-            nudCantidad.Size = new Size(152, 33);
-            nudCantidad.TabIndex = 41;
+            dgvLibros.CellContentClick += dgvLibros_CellContentClick;
             // 
             // btnEditar
             // 
@@ -496,6 +489,16 @@
             Fecha.HeaderText = "Fecha";
             Fecha.Name = "Fecha";
             Fecha.ReadOnly = true;
+            // 
+            // nudCantidad
+            // 
+            nudCantidad.BackColor = SystemColors.InfoText;
+            nudCantidad.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            nudCantidad.ForeColor = SystemColors.Window;
+            nudCantidad.Location = new Point(129, 171);
+            nudCantidad.Name = "nudCantidad";
+            nudCantidad.Size = new Size(152, 33);
+            nudCantidad.TabIndex = 41;
             // 
             // fmr_Libros
             // 
