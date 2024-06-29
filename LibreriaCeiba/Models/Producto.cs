@@ -32,7 +32,6 @@ namespace LibreriaCeiba.Models
                 cmd.Parameters.Add(new MySqlParameter("@Precio", product.Precio));
                 cmd.Parameters.Add(new MySqlParameter("@Foto", TOOLS.ConvertirImagenBinario(product.Foto)));
                 newId = (int)(ulong)cmd.ExecuteScalar();
-                MessageBox.Show(newId.ToString(),"asds");
             }
             catch (MySqlException ex)
             {
@@ -46,7 +45,7 @@ namespace LibreriaCeiba.Models
             return GetProductos().Find(p => p.Id == newId)!;
         }
 
-        public bool EliminarProducto(Producto product)
+        public static bool EliminarProducto(Producto product)
         {
             MySqlConnection con = Conexion.getConexion();
             con.Open();
@@ -73,19 +72,20 @@ namespace LibreriaCeiba.Models
             return true;
         }
 
-        public Producto ModificarProducto(Producto producto)
+        public static Producto ModificarProducto(Producto producto)
         {
             MySqlConnection con = Conexion.getConexion();
             con.Open();
-            string query = "UPDATE tblproductos SET Categoria = @Categoria, Nombre = @Nombre, Cantidad = @Cantidad, Precio = @Precio, Foto = @Foto";
+            string query = "UPDATE tblproductos SET Categoria = @Categoria, Nombre = @Nombre, Cantidad = @Cantidad, Precio = @Precio, Foto = @Foto WHERE idProducto = @Id";
             try
             {
                 MySqlCommand cmd = new MySqlCommand(query, con);
-                cmd.Parameters.Add(new MySqlParameter("@Categoria", producto.Nombre));
+                cmd.Parameters.Add(new MySqlParameter("@Categoria", producto.Categoria));
                 cmd.Parameters.Add(new MySqlParameter("@Nombre", producto.Nombre));
                 cmd.Parameters.Add(new MySqlParameter("@Cantidad", producto.Cantidad));
                 cmd.Parameters.Add(new MySqlParameter("@Precio", producto.Precio));
-                cmd.Parameters.Add(new MySqlParameter("@Foto", "producto.Foto"));
+                cmd.Parameters.Add(new MySqlParameter("@Foto", TOOLS.ConvertirImagenBinario(producto.Foto)));
+                cmd.Parameters.Add(new MySqlParameter("@Id", producto.Id));
                 cmd.ExecuteNonQuery();
             }
             catch (MySqlException ex)

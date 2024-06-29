@@ -107,7 +107,21 @@ namespace LibreriaCeiba.views
             }
             else if (btnMultiUso.Text == "ACTUALIZAR")
             {
+                MessageBox.Show("Edit");
                 //Funcion para Guardar un nuevo libro
+                Libro libro = Libro.ModificarLibro(new Libro
+                {
+                    Id = int.Parse(lblID.Text),
+                    Nombre = txtNombre.Text.Trim(),
+                    Autor = txtAutor.Text.Trim(),
+                    Cantidad = (int)nudCantidad.Value,
+                    Editorial = txtEditorial.Text.Trim(),
+                    Categoria = "Libro",
+                    FechaPublicacion = dtpFecha.Value,
+                    Foto = (Bitmap)picImagen.Image,
+                    Precio = decimal.Parse(txtPrecio.Text.Trim())
+                });
+                ReloadTable();
 
                 btnMultiUso.Text = "GUARDAR";
                 Limpiar();
@@ -155,10 +169,10 @@ namespace LibreriaCeiba.views
                 txtNombre.Text = Fila.Cells[3].Value.ToString();
                 nudCantidad.Value = decimal.Parse(Fila.Cells[4].Value.ToString());
                 txtPrecio.Text = Fila.Cells[5].Value.ToString();
-                txtEditorial.Text = Fila.Cells[6].Value.ToString();
-                dtpFecha.Value = (DateTime)Fila.Cells[7].Value;
-                txtAutor.Text = Fila.Cells[8].Value.ToString();
-                picImagen.Image = (Bitmap)Fila.Cells[9].Value;
+                txtEditorial.Text = Fila.Cells[8].Value.ToString();
+                dtpFecha.Value = DateTime.Parse(Fila.Cells[9].Value.ToString());
+                txtAutor.Text = Fila.Cells[7].Value.ToString();
+                picImagen.Image = (Bitmap)Fila.Cells[6].Value;
 
 
                 btnMultiUso.Text = "ACTUALIZAR";
@@ -170,8 +184,13 @@ namespace LibreriaCeiba.views
                 var respuesta = MessageBox.Show("Esta seguro que quiere eliminar el producto", "Info", MessageBoxButtons.YesNo, MessageBoxIcon.Hand);
                 if (respuesta == DialogResult.Yes)
                 {
+                    Libro libro = new Libro()
+                    {
+                        Id = (int)dgvLibros.Rows[e.RowIndex].Cells[2].Value,
+                    };
                     //Funcion para eliminar 
-
+                    Libro.EliminarLibro(libro);
+                    ReloadTable();
                 }
             }
         }

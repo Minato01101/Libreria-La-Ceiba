@@ -38,42 +38,52 @@ namespace LibreriaCeiba.views
             TOOLS.SeleccionarImagen(picImagen);
         }
 
-        public void ValidarProductos()
+        public bool ValidarProductos()
         {
             if (string.IsNullOrEmpty(txtNombre.Text))
             {
                 MessageBox.Show("Por favor, Ingrese Nombre", info, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                return false;
             }
 
             if (string.IsNullOrEmpty(txtCategotia.Text))
             {
                 MessageBox.Show("Por favor, Ingrese la Cantidad", info, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                return false;
             }
 
             if (string.IsNullOrEmpty(txtPrecio.Text))
             {
                 MessageBox.Show("Por favor, Ingrese el Precio", info, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                return false;
             }
 
             if (string.IsNullOrEmpty(txtCategotia.Text))
             {
                 MessageBox.Show("Por favor, Ingrese Categoria", info, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                return false;
             }
+
+            return true;
         }
 
         private void btnMultiUso_Click(object sender, EventArgs e)
         {
             //Validando datos
-            ValidarProductos();
+            if (!ValidarProductos())
+            {
+                return;
+            }
 
             if (btnMultiUso.Text == "GUARDAR")
             {
                 //Funcion para guardar en base de dato
-
+                Producto.CrearProducto(new Producto()
+                {
+                    Id = -1,
+                    Nombre = txtNombre.Text.Trim(),
+                    Cantidad = (int)nudCantidad.Value,
+                });
             }
             else if (btnMultiUso.Text == "ACTUALIZAR")
             {
@@ -88,7 +98,7 @@ namespace LibreriaCeiba.views
         {
             lblID.Text = "";
             txtNombre.Text = "";
-            txtCantidad.Text = "";
+            nudCantidad.Value = 0;
             txtPrecio.Text = "";
             txtCategotia.Text = "";
             picImagen.Image = Resources.libros__2_;
@@ -110,7 +120,7 @@ namespace LibreriaCeiba.views
 
                 lblID.Text = Fila.Cells[2].Value.ToString();
                 txtNombre.Text = Fila.Cells[3].Value.ToString();
-                txtCantidad.Text = Fila.Cells[4].Value.ToString();
+                nudCantidad.Value = int.Parse(Fila.Cells[4].Value.ToString());
                 txtPrecio.Text = Fila.Cells[5].Value.ToString();
                 txtCategotia.Text = Fila.Cells[6].Value.ToString();
                 picImagen.Image = (Bitmap)Fila.Cells[7].Value;

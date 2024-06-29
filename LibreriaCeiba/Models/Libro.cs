@@ -1,7 +1,9 @@
 ﻿using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -47,6 +49,67 @@ namespace LibreriaCeiba.Models
             }
 
             return GetLibros().Find(l => l.Id == producto.Id);
+        }
+
+        public static Libro ModificarLibro(Libro libro)
+        {
+            MySqlConnection con = Conexion.getConexion();
+            con.Open();
+            string query = "UPDATE tbllibros SET Autor = @Autor, Editorial = @Editorial, FechaPublicacion = @FechaPublicacion WHERE idProducto = @Id";
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.Add(new MySqlParameter("@Autor", libro.Autor));
+                cmd.Parameters.Add(new MySqlParameter("@Editorial", libro.Editorial));
+                cmd.Parameters.Add(new MySqlParameter("@FechaPublicacion", libro.FechaPublicacion));
+                cmd.Parameters.Add(new MySqlParameter("@Id", libro.Id));
+                cmd.ExecuteNonQuery();
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine(@"Error: " + ex.Message);
+                return null;
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            ModificarProducto(libro);
+            return GetLibros().Find(u => u.Id == libro.Id)!;
+        }
+
+        public static bool EliminarLibro(Libro libro)
+        {
+            MySqlConnection con = Conexion.getConexion();
+            con.Open();
+            string query = "DELETE FROM tbllibros WHERE idProducto = @Id";
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.Add(new MySqlParameter("@Id", libro.Id));
+                var affected = cmd.ExecuteNonQuery();
+                if (affected < 1)
+                {
+                    return false;
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine(@"Error: " + ex.Message);
+                return false;
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            if (!EliminarProducto(libro))
+            {
+                return false;
+            }
+
+            return true;
         }
 
         public static List<Libro> GetLibros()

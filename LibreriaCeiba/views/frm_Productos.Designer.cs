@@ -28,15 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             panel1 = new Panel();
             label2 = new Label();
             picCerrarSesion = new PictureBox();
             label1 = new Label();
             txtPrecio = new MaterialSkin.Controls.MaterialTextBox();
-            txtCantidad = new MaterialSkin.Controls.MaterialTextBox();
             txtNombre = new MaterialSkin.Controls.MaterialTextBox();
             materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
@@ -57,10 +56,12 @@
             Precio = new DataGridViewTextBoxColumn();
             Foto = new DataGridViewImageColumn();
             lblID = new Label();
+            nudCantidad = new NumericUpDown();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picCerrarSesion).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picImagen).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvProductos).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudCantidad).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -127,25 +128,6 @@
             txtPrecio.TrailingIcon = null;
             txtPrecio.UseTallSize = false;
             txtPrecio.KeyPress += txtCantidad_KeyPress;
-            // 
-            // txtCantidad
-            // 
-            txtCantidad.AnimateReadOnly = false;
-            txtCantidad.BorderStyle = BorderStyle.None;
-            txtCantidad.Depth = 0;
-            txtCantidad.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            txtCantidad.LeadingIcon = null;
-            txtCantidad.Location = new Point(122, 164);
-            txtCantidad.MaxLength = 50;
-            txtCantidad.MouseState = MaterialSkin.MouseState.OUT;
-            txtCantidad.Multiline = false;
-            txtCantidad.Name = "txtCantidad";
-            txtCantidad.Size = new Size(152, 36);
-            txtCantidad.TabIndex = 23;
-            txtCantidad.Text = "";
-            txtCantidad.TrailingIcon = null;
-            txtCantidad.UseTallSize = false;
-            txtCantidad.KeyPress += txtCantidad_KeyPress;
             // 
             // txtNombre
             // 
@@ -309,30 +291,30 @@
             // 
             dgvProductos.AllowUserToAddRows = false;
             dgvProductos.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = Color.LightGreen;
-            dataGridViewCellStyle1.ForeColor = Color.DarkGreen;
-            dgvProductos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = Color.LightGreen;
+            dataGridViewCellStyle4.ForeColor = Color.DarkGreen;
+            dgvProductos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             dgvProductos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvProductos.BackgroundColor = Color.LightGreen;
             dgvProductos.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.ForestGreen;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgvProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = Color.ForestGreen;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle5.ForeColor = Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            dgvProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             dgvProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvProductos.Columns.AddRange(new DataGridViewColumn[] { btnEditar, btnEliminar, ID, Nombre, Categoria, Cantidad, Precio, Foto });
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.Honeydew;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = Color.DarkGreen;
-            dataGridViewCellStyle3.SelectionBackColor = Color.Green;
-            dataGridViewCellStyle3.SelectionForeColor = Color.White;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dgvProductos.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = Color.Honeydew;
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle6.ForeColor = Color.DarkGreen;
+            dataGridViewCellStyle6.SelectionBackColor = Color.Green;
+            dataGridViewCellStyle6.SelectionForeColor = Color.White;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
+            dgvProductos.DefaultCellStyle = dataGridViewCellStyle6;
             dgvProductos.EnableHeadersVisualStyles = false;
             dgvProductos.Location = new Point(6, 323);
             dgvProductos.Name = "dgvProductos";
@@ -410,11 +392,22 @@
             lblID.Text = "id";
             lblID.Visible = false;
             // 
-            // frm_Productos
+            // nudCantidad
+            // 
+            nudCantidad.BackColor = SystemColors.InfoText;
+            nudCantidad.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            nudCantidad.ForeColor = SystemColors.Window;
+            nudCantidad.Location = new Point(122, 172);
+            nudCantidad.Name = "nudCantidad";
+            nudCantidad.Size = new Size(152, 33);
+            nudCantidad.TabIndex = 42;
+            // 
+            // frm_Libros
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(nudCantidad);
             Controls.Add(lblID);
             Controls.Add(dgvProductos);
             Controls.Add(btnCancelar);
@@ -424,14 +417,13 @@
             Controls.Add(txtCategotia);
             Controls.Add(materialLabel7);
             Controls.Add(txtPrecio);
-            Controls.Add(txtCantidad);
             Controls.Add(txtNombre);
             Controls.Add(materialLabel3);
             Controls.Add(materialLabel2);
             Controls.Add(materialLabel1);
             Controls.Add(panel1);
             FormStyle = FormStyles.ActionBar_None;
-            Name = "frm_Productos";
+            Name = "frm_Libros";
             Padding = new Padding(3, 24, 3, 3);
             Text = "frm_Productos";
             Load += frm_Productos_Load;
@@ -440,6 +432,7 @@
             ((System.ComponentModel.ISupportInitialize)picCerrarSesion).EndInit();
             ((System.ComponentModel.ISupportInitialize)picImagen).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvProductos).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudCantidad).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -451,7 +444,6 @@
         private PictureBox picCerrarSesion;
         private Label label1;
         private MaterialSkin.Controls.MaterialTextBox txtPrecio;
-        private MaterialSkin.Controls.MaterialTextBox txtCantidad;
         private MaterialSkin.Controls.MaterialTextBox txtNombre;
         private MaterialSkin.Controls.MaterialLabel materialLabel3;
         private MaterialSkin.Controls.MaterialLabel materialLabel2;
@@ -472,5 +464,6 @@
         private DataGridViewTextBoxColumn Cantidad;
         private DataGridViewTextBoxColumn Precio;
         private DataGridViewImageColumn Foto;
+        private NumericUpDown nudCantidad;
     }
 }
