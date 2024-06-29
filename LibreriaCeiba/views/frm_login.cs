@@ -1,7 +1,9 @@
 using LibreriaCeiba.Models;
 using LibreriaCeiba.Properties;
+using LibreriaCeiba.views;
 using MaterialSkin;
 using MySql.Data.MySqlClient;
+using System.Data;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -35,41 +37,74 @@ namespace LibreriaCeiba
         {
             string nombre = txtUsuario.Text;
             string clave = txtClave.Text;
+
+            if (string.IsNullOrEmpty(nombre) || string.IsNullOrEmpty(clave))
+            {
+                MessageBox.Show("Por favor ingrese usuario y contraseña.", "Info", MessageBoxButtons.OK);
+                return;
+            }
+
             string claveEncriptada = EncoderSHA256(clave);
-            //query
-            string query = $"SELECT COUNT(*) FROM tblusers WHERE NombreUsuario = @nombre AND Clave = @clave";
+            int idUsuario = -1;
+            int numeroPermiso = -1;
+
+            string query = $"SELECT IdUsuario, Permisos FROM tblusers WHERE NombreUsuario = @nombre AND Clave = @clave";
 
             MySqlConnection connection = Conexion.getConexion();
-            connection.Open();
-
             try
             {
+                connection.Open();
                 MySqlCommand cmd = new MySqlCommand(query, connection);
-
                 cmd.Parameters.AddWithValue("@nombre", nombre);
                 cmd.Parameters.AddWithValue("@clave", claveEncriptada);
 
-                int Datos = Convert.ToInt32(cmd.ExecuteScalar());
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        idUsuario = reader.GetInt32("IdUsuario");
+                        numeroPermiso = reader.GetInt32("Permisos");
+                        MessageBox.Show($"Inicio de sesión exitoso. ID de usuario: {idUsuario}, Permiso: {numeroPermiso}", "Info", MessageBoxButtons.OK);
 
-                if (Datos > 0)
-                {
-                    MessageBox.Show("Inicio de seccion exitoso", Info, MessageBoxButtons.OK);
-                }
-                else
-                {
-                    MessageBox.Show("Error: Asegúrese de haber ingresado usuario y contraseña correcta", "Info", MessageBoxButtons.OK);
+                        if (numeroPermiso == 0)
+                        {
+                            fmr_Inicio_superUsuario superUsuario = new fmr_Inicio_superUsuario();
+                            superUsuario.Show();
+                            Hide();
+                            superUsuario.FormClosing += frm_login_Shown;
+                        }
+
+                        if(numeroPermiso == 1)
+                        {
+                            frm_Inicio_administrador administrador = new frm_Inicio_administrador();
+                            administrador.Show();
+                            Hide();
+                            administrador.FormClosing += frm_login_Shown;
+                        }
+
+                        if (numeroPermiso == 2)
+                        {
+                            fmr_Inicio_Vendedor vendedor = new fmr_Inicio_Vendedor();
+                            vendedor.Show();
+                            Hide();
+                            vendedor.FormClosing += frm_login_Shown;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error: Usuario o contraseña incorrectos.", "Info", MessageBoxButtons.OK);
+                    }
                 }
             }
             catch (MySqlException ex)
             {
-
-                MessageBox.Show("Error:" + ex.Message);
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
-                connection.Close();
+                if (connection.State == ConnectionState.Open)
+                    connection.Close();
             }
-
         }
 
         public static string EncoderSHA256(string input)
@@ -100,6 +135,11 @@ namespace LibreriaCeiba
                 pbShow.Image = Resources.invisible__1_;
                 txtClave.Password = true;
             }
+        }
+
+        private void frm_login_Shown(object? sender, EventArgs e)
+        {
+            Show();
         }
     }
 }
