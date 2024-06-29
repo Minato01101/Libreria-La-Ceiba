@@ -12,6 +12,7 @@ namespace LibreriaCeiba.Models
         public static void SeleccionarImagen(PictureBox pictureBox)
         {
             var FileDialog = new OpenFileDialog();
+            FileDialog.Filter = "Imagenes|*.png;*.jpg;*.jpeg|All files(*.*)|*.*";
             var result = FileDialog.ShowDialog();
 
             if (result == DialogResult.OK)

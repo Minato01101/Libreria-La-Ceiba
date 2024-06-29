@@ -14,11 +14,11 @@ using System.Windows.Forms;
 
 namespace LibreriaCeiba.views
 {
-    public partial class frm_Productos : MaterialSkin.Controls.MaterialForm
+    public partial class frm_Libros : MaterialSkin.Controls.MaterialForm
     {
         //String info para mostrar en mbox
         string info = "SISTEMA DE VENTAS LA CEIBA";
-        public frm_Productos()
+        public frm_Libros()
         {
             InitializeComponent();
 

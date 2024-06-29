@@ -39,7 +39,7 @@ namespace LibreriaCeiba.Models
         {
             MySqlConnection con = Conexion.getConexion();
             con.Open();
-            string query = "INSERT INTO tblusers (NombreUsuario,Clave,Permisos) VALUE (@Nombre,@Clave,@Permisos); SELECT CAST(scope_identity() AS int);";
+            string query = "INSERT INTO tblusers (NombreUsuario,Clave,Permisos) VALUE (@Nombre,@Clave,@Permisos); SELECT LAST_INSERT_ID();";
             int newId;
             try
             {
@@ -47,7 +47,7 @@ namespace LibreriaCeiba.Models
                 cmd.Parameters.Add(new MySqlParameter("@Nombre", user.Nombre));
                 cmd.Parameters.Add(new MySqlParameter("@Clave", user.GetClave()));
                 cmd.Parameters.Add(new MySqlParameter("@Permisos", (int)user.Permiso));
-                newId = (int)cmd.ExecuteScalar();
+                newId = (int)(ulong)cmd.ExecuteScalar();
             }
             catch (MySqlException ex)
             {

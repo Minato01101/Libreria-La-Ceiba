@@ -1,6 +1,6 @@
 ﻿namespace LibreriaCeiba.views
 {
-    partial class frm_Productos
+    partial class frm_Libros
     {
         /// <summary>
         /// Required designer variable.
