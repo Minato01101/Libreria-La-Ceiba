@@ -1,4 +1,5 @@
-﻿using MaterialSkin;
+﻿using LibreriaCeiba.Models;
+using MaterialSkin;
 using Org.BouncyCastle.Asn1.Ocsp;
 using System;
 using System.Collections.Generic;
@@ -39,14 +40,51 @@ namespace LibreriaCeiba.views
 
             if (btnMultiUso.Text == "GUARDAR")
             {
-
+                Cliente cliente = Cliente.CrearCliente(new Models.Cliente
+                {
+                    Id = -1,
+                    Nombre = txtNombre.Text,
+                    Apellido = txtApellido.Text,
+                    Direccion = txtDireccion.Text,
+                    Telefono = mskTel.Text
+                });
+                if (cliente != null)
+                {
+                    MessageBox.Show("Correcto", "Libro Añadido correctamente");
+                    ReloadTable();
+                }
             }
             else if (btnMultiUso.Text == "ACTUALIZAR")
             {
                 //Funcion para Guardar un nuevo libro
+                Cliente cliente = Cliente.CrearCliente(new Models.Cliente
+                {
+                    Id = int.Parse(lblID.Text),
+                    Nombre = txtNombre.Text,
+                    Apellido = txtApellido.Text,
+                    Direccion = txtDireccion.Text,
+                    Telefono = mskTel.Text
+                });
 
+                ReloadTable();
                 btnMultiUso.Text = "GUARDAR";
+                btnCancelar.Visible = false;
                 Limpiar();
+            }
+        }
+
+        private void ReloadTable()
+        {
+            dgvClientes.Rows.Clear();
+            foreach (var cliente in Cliente.GetClientes())
+            {
+                dgvClientes.Rows.Add(
+                    "", "",
+                   cliente.Id,
+                   cliente.Nombre,
+                   cliente.Apellido,
+                   cliente.Direccion,
+                   cliente.Telefono);
             }
         }
 
@@ -118,9 +156,17 @@ namespace LibreriaCeiba.views
                 if (respuesta == DialogResult.Yes)
                 {
                     //Funcion para eliminar 
-
+                    Cliente cliente = new Cliente()
+                    {
+                        Id = (int)dgvClientes.Rows[e.RowIndex].Cells[2].Value,
+                    };
                 }
             }
+        }
+
+        private void frm_Clientes_Load(object sender, EventArgs e)
+        {
+            ReloadTable();
         }
     }
 }

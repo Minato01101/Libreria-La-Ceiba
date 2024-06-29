@@ -13,7 +13,7 @@ namespace LibreriaCeiba.Models
         static string port = "3307";
         static string user = "root";
         static string pwd = "";
-        static string db = "dblibreria";
+        static string db = "dblibreria_v1";
 
         public static MySqlConnection getConexion()
         {
