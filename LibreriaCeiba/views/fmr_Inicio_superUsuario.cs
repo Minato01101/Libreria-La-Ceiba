@@ -33,5 +33,23 @@ namespace LibreriaCeiba.views
         {
 
         }
+
+        private void picVender_Click(object sender, EventArgs e)
+        {
+            fmr_Inicio_Vendedor vender = new fmr_Inicio_Vendedor();
+            vender.Show();
+            Hide();
+            vender.FormClosing += fmr_Inicio_superUsuario_Shown;
+        }
+
+        private void fmr_Inicio_superUsuario_Shown(object? sender, EventArgs e)
+        {
+            Show();
+        }
+
+        private void picAdminUsuarios_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

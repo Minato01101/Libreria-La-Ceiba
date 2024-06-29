@@ -123,6 +123,7 @@
             picVender.SizeMode = PictureBoxSizeMode.Zoom;
             picVender.TabIndex = 17;
             picVender.TabStop = false;
+            picVender.Click += picVender_Click;
             // 
             // picAdminUsuarios
             // 
@@ -133,6 +134,7 @@
             picAdminUsuarios.SizeMode = PictureBoxSizeMode.Zoom;
             picAdminUsuarios.TabIndex = 16;
             picAdminUsuarios.TabStop = false;
+            picAdminUsuarios.Click += picAdminUsuarios_Click;
             // 
             // picVentas
             // 
@@ -210,6 +212,7 @@
             Name = "fmr_Inicio_superUsuario";
             Padding = new Padding(3, 24, 3, 3);
             Text = "fmr_Inicio_superUsuario";
+            Shown += fmr_Inicio_superUsuario_Shown;
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picVender).EndInit();

@@ -33,6 +33,9 @@ namespace LibreriaCeiba.views
 
         }
 
-        
+        private void btnAñadir_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
