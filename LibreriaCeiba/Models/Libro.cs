@@ -125,6 +125,11 @@ namespace LibreriaCeiba.Models
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
+                    Bitmap img = null;
+                    if (reader[5] is not DBNull)
+                    {
+                         img = (Bitmap)TOOLS.ConvertirBinarioImagen((byte[])reader[5]);
+                    }
                     list.Add(new Libro()
                     {
                         Id = reader.GetInt32(0),
@@ -132,7 +137,7 @@ namespace LibreriaCeiba.Models
                         Nombre = reader.GetString(2),
                         Cantidad = reader.GetInt32(3),
                         Precio = reader.GetDecimal(4),
-                        Foto = (Bitmap)TOOLS.ConvertirBinarioImagen((byte[])reader[5]),
+                        Foto = img,
                     });
                 }
                 con.Close();
