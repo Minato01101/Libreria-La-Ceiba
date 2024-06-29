@@ -159,6 +159,7 @@ namespace LibreriaCeiba.views
                     Cliente cliente = new Cliente()
                     {
                         Id = (int)dgvClientes.Rows[e.RowIndex].Cells[2].Value,
+
                     };
                 }
             }
@@ -167,6 +168,11 @@ namespace LibreriaCeiba.views
         private void frm_Clientes_Load(object sender, EventArgs e)
         {
             ReloadTable();
+        }
+
+        private void frm_Clientes_Shown(object sender, EventArgs e)
+        {
+            Show();
         }
     }
 }

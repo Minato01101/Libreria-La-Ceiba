@@ -159,6 +159,7 @@
             picVender.SizeMode = PictureBoxSizeMode.Zoom;
             picVender.TabIndex = 17;
             picVender.TabStop = false;
+            picVender.Click += picVender_Click;
             // 
             // picClientes
             // 
@@ -169,6 +170,7 @@
             picClientes.SizeMode = PictureBoxSizeMode.Zoom;
             picClientes.TabIndex = 16;
             picClientes.TabStop = false;
+            picClientes.Click += picClientes_Click;
             // 
             // picVentas
             // 
@@ -199,6 +201,7 @@
             picProductos.SizeMode = PictureBoxSizeMode.Zoom;
             picProductos.TabIndex = 13;
             picProductos.TabStop = false;
+            picProductos.Click += picProductos_Click;
             // 
             // picLibros
             // 
@@ -209,6 +212,7 @@
             picLibros.SizeMode = PictureBoxSizeMode.Zoom;
             picLibros.TabIndex = 12;
             picLibros.TabStop = false;
+            picLibros.Click += picLibros_Click;
             // 
             // panel1
             // 
@@ -253,6 +257,7 @@
             picCerrarSesion.SizeMode = PictureBoxSizeMode.Zoom;
             picCerrarSesion.TabIndex = 24;
             picCerrarSesion.TabStop = false;
+            picCerrarSesion.Click += picCerrarSesion_Click;
             // 
             // label1
             // 
@@ -277,6 +282,7 @@
             Padding = new Padding(3, 24, 3, 3);
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frm_Inicio";
+            Shown += frm_Inicio_administrador_Shown;
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picVender).EndInit();

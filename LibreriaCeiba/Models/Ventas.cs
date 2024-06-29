@@ -64,6 +64,7 @@ namespace LibreriaCeiba.Models
             }
             catch (MySqlException ex)
             {
+                //kaskjdhaskdjhaskd
                 Console.WriteLine("Eliminar Productos");
             }
             finally

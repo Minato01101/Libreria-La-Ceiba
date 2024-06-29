@@ -413,6 +413,7 @@
             Padding = new Padding(3, 24, 3, 3);
             Text = "frm_Clientes";
             Load += frm_Clientes_Load;
+            Shown += frm_Clientes_Shown;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picCerrarSesion).EndInit();
